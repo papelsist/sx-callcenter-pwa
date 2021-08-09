@@ -1,0 +1,68 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main" #mnu>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-button>
+            <ion-icon name="person" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>{{ (user$ | async)?.displayName }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item detail routerLink="/" (click)="mnu.close()">
+          <ion-label> Inicio </ion-label>
+          <ion-icon name="home" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/ventas" (click)="mnu.close()">
+          <ion-label>Pedidos</ion-label>
+          <ion-icon name="bag-handle" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/clientes" (click)="mnu.close()">
+          <ion-label>Clientes</ion-label>
+          <ion-icon name="people" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/productos" (click)="mnu.close()">
+          <ion-label>Productos</ion-label>
+          <ion-icon name="layers" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/solicitudes" (click)="mnu.close()">
+          <ion-label>Depósitos</ion-label>
+          <ion-icon name="cash" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/promociones" (click)="mnu.close()">
+          <ion-label>Promociones</ion-label>
+          <ion-icon name="color-wand" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/analytics" (click)="mnu.close()">
+          <ion-label>Analytics</ion-label>
+          <ion-icon name="analytics" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/transportes" (click)="mnu.close()">
+          <ion-label>Transportes</ion-label>
+          <ion-icon name="bus" slot="start"></ion-icon>
+        </ion-item>
+
+        <ion-item detail routerLink="/settings" (click)="mnu.close()">
+          <ion-label>Mi Cuenta </ion-label>
+          <ion-icon slot="start" name="settings"></ion-icon>
+        </ion-item>
+
+        <ion-item button (click)="signOut(); mnu.close()">
+          <ion-label> Cerrar sesión </ion-label>
+          <ion-icon slot="end" name="log-out"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

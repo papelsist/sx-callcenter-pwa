@@ -1,0 +1,51 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@papx/environment/*": [
+        "./src/environments/*"
+      ],
+      "@papx/core": [
+        "./src/app/core/index.ts"
+      ],
+      "@papx/common/*": [
+        "./src/app/common/*"
+      ],
+      "@papx/shared/*": [
+        "./src/app/shared/*"
+      ],
+      "@papx/utils": [
+        "./src/app/utils/index.ts"
+      ],
+      "@papx/models": [
+        "./src/app/@models/index.ts"
+      ],
+      "@papx/data-access": [
+        "./src/app/@data-access/index.ts"
+      ],
+      "@papx/auth": [
+        "./src/app/@auth/index.ts"
+      ],
+
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+
+}

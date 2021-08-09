@@ -1,0 +1,57 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title> Catálogo de clientes </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="clienteNuevo()">
+        <ion-icon slot="icon-only" name="person-add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list-header>
+    <ion-searchbar
+      #search
+      showCancelButton="focus"
+      placeholder="Buscar cliente"
+      color="tertiary"
+      (ionChange)="onSearch($event)"
+      (ionCancel)="close()"
+      (keyup.enter)="onEnter(search.value)"
+      (keyup.arrowdown)="firstItem($event)"
+      inputmode="search"
+      enterkeyhint="search"
+      debounce="400"
+      tabindex="0"
+      class="ion-text-uppercase"
+    ></ion-searchbar>
+  </ion-list-header>
+  <ion-list lines="full">
+    <ion-item
+      *ngFor="let c of clientes$ | async; index as idx; first as fst"
+      (click)="select(c)"
+      (keyup.arrowdown)="nextItem(idx, $event)"
+      (keyup.arrowup)="previousItem(idx, $event)"
+      button
+    >
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          {{ c.nombre }}
+        </ion-text>
+        <ion-text color="secondary">
+          <ion-grid class="ion-no-padding">
+            <ion-row>
+              <ion-col>
+                <h4>RFC: {{ c.rfc }}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-text>
+      </ion-label>
+      <span slot="end" *ngIf="c.credito">
+        <ion-text color="warning"> Crédito </ion-text>
+      </span>
+      <!-- <ion-note slot="end" color="secondary"> Crédito </ion-note> -->
+    </ion-item>
+  </ion-list>
+</ion-content>

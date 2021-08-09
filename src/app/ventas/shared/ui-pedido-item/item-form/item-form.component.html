@@ -1,0 +1,88 @@
+<ion-grid [formGroup]="form">
+  <ion-row>
+    <ion-col>
+      <ion-item formGroupName="corte">
+        <ion-label position="floating">Tamaños</ion-label>
+        <ion-input
+          #tantosComponent
+          type="number"
+          autofocus
+          inputmode="numeric"
+          formControlName="tantos"
+          clearOnEdit="true"
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item>
+        <ion-label position="floating"> Buscar por clave </ion-label>
+        <ion-input
+          class="ion-text-uppercase"
+          placeholder="Clave"
+          (keyup.enter)="findProductByClave(claveField.value)"
+          clearOnEdit="false"
+          #claveField
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <!-- <papx-item-producto-field
+        [producto]="producto"
+        (selection)="findProducto()"
+      ></papx-item-producto-field> -->
+      <papx-producto-control
+        [producto]="producto"
+        (selection)="selectProducto($event)"
+      ></papx-producto-control>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Cantidad</ion-label>
+        <ion-input
+          #cantidad
+          type="number"
+          formControlName="cantidad"
+          (keyup.enter)="onEnter()"
+          enterkeyhint="enter"
+          inputmode="numeric"
+          min="1"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input
+          color="primary"
+          value="{{ form.get('precio').value || 0.0 | currency }}"
+          readonly
+          tabindex="-1"
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Importe</ion-label>
+        <ion-input
+          color="primary"
+          value="{{ form.get('importe').value | currency }}"
+          readonly
+          tabindex="-1"
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<papx-corte-field [parent]="form"></papx-corte-field>
+<papx-existencia-field
+  [producto]="controls.producto.valueChanges | async"
+  [existencias]="existencia"
+  [sucursal]="sucursal"
+  [faltante]="form.get('faltante').value"
+></papx-existencia-field>
+<!-- <papx-pedido-item-validation [parent]="form"></papx-pedido-item-validation> -->

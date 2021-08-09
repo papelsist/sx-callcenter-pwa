@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title> {{title}} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/ventas">
+        <ion-icon name="cart" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" *ngIf="user$ | async as user">
+    <!-- <div class="home-image">
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/papx-ws-prod.appspot.com/o/images%2Fpapel-logo2.svg?alt=media&token=b20eea1b-98e3-4c5f-b129-d8725d05e9f9"
+        alt=""
+      />
+    </div> -->
+    <h1>SX-CALLCENTER 2</h1>
+    <p>Bienvenido al sistema de ventas telefónicas.</p>
+    <p>Usuario :<ion-text color="warning">{{user.displayName}}</ion-text></p>
+  </div>
+</ion-content>

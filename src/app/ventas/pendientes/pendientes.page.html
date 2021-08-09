@@ -1,0 +1,15 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <papx-ventas-header
+    [title]="getTitle(vm.filtrar)"
+    [filterActivated]="vm.filtrar"
+    (filter)="filtrarPorUsuario($event)"
+  ></papx-ventas-header>
+
+  <ion-content>
+    <papx-pendientes-grid
+      [pedidos]="vm.pedidos"
+      (regresar)="regresar($event, vm.user, vm.claims)"
+      (consultar)="onConsultar($event)"
+    ></papx-pendientes-grid>
+  </ion-content>
+</ng-container>

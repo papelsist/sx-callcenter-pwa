@@ -1,0 +1,110 @@
+<ion-item-sliding [disabled]="isCargo()">
+  <ion-item button [disabled]="disabled" (click)="onSelection()" detail="false">
+    <ion-label class="ion-text-wrap">
+      <div class="descripcion">
+        <h2>
+          {{ this.item.clave }} - {{ this.item.producto.descripcion }} ({{
+            this.item.unidad
+          }})
+          <strong class="ion-padding-left modo-venta">
+            {{ this.item.modoVenta === "B" ? "PB" : "PN" }}
+          </strong>
+        </h2>
+        <ng-container *ngIf="item.corte as corte">
+          <ion-icon
+            class="ion-padding-start"
+            name="cut"
+            color="warning"
+            slot="icon-only"
+          ></ion-icon>
+          <small class="ion-padding-start ion-text-uppercase">
+            {{ corte.instruccion }}
+          </small>
+        </ng-container>
+      </div>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col class="ion-hide-sm-up" size="12" size-sm="12">
+            Cant: {{ item.cantidad | number: "1.0" }}
+          </ion-col>
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+            <span>Precio : {{ item.precio | currency }}</span>
+          </ion-col>
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+            <span>Importe: {{ item.importe | currency }}</span>
+          </ion-col>
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+            <span>
+              Desc: ({{ item.descuento / 100 | percent }})
+              {{ item.descuentoImporte | currency }}
+            </span>
+          </ion-col>
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+            <span
+              >Subtotal:
+              <ion-text color="success">
+                {{ item.subtotal | currency }}
+              </ion-text>
+            </span>
+          </ion-col>
+          <!--  -->
+          <ion-col size-sm="6" size-md="12" size-lg="3">
+            <span *ngIf="item.importeCortes > 0.0">
+              Cortes: {{ item.importeCortes | currency }}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-label>
+
+    <!-- <div slot="start" class="ion-hide-sm-down cantidad">
+      <ion-text color="secondary">
+        {{ index + 1 }}
+      </ion-text>
+    </div> -->
+    <ion-chip color="primary" slot="start">
+      {{ index + 1 }}
+    </ion-chip>
+
+    <ion-chip color="warning" *ngIf="item.faltante > 0">
+      <ion-icon name="alert-circle"></ion-icon>
+      <ion-label> Falta: {{ item.faltante | number: "1.0-0" }} </ion-label>
+    </ion-chip>
+    <ion-icon
+      name="checkmark-done"
+      size="small"
+      color="success"
+      *ngIf="item.faltante <= 0"
+    ></ion-icon>
+    <!-- <ion-chip color="primary" slot="end">
+      {{ item.subtotal | currency }}
+    </ion-chip> -->
+    <ion-chip color="primary" slot="end">
+      <!-- {{ item.subtotal | currency }} -->
+      Cantidad: {{ item.cantidad | number: "1.0" }}
+    </ion-chip>
+    <ion-reorder slot="start"></ion-reorder>
+  </ion-item>
+
+  <ion-item-options>
+    <ion-item-options side="end">
+      <ion-item-option
+        color="danger"
+        [disabled]="disabled"
+        (click)="eliminarItem()"
+      >
+        <ion-icon slot="top" name="trash"></ion-icon>
+        Eliminar
+      </ion-item-option>
+      <ion-item-option
+        color="warning"
+        [disabled]="disabled"
+        (click)="copiarItem()"
+      >
+        <ion-icon slot="top" name="copy"></ion-icon>
+        Duplicar
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-options>
+</ion-item-sliding>

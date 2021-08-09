@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ item ? "Modificar partida" : "Agregar partida" }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-label>Cerrar</ion-label>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <papx-pedido-item-form
+    [item]="item"
+    [tipo]="tipo"
+    [sucursal]="sucursal"
+    (save)="onSave($event)"
+    #form
+  ></papx-pedido-item-form>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()" tabindex="-99">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+        Cancelar
+      </ion-button>
+      <ion-button
+        color="primary"
+        [disabled]="form.form.invalid"
+        (click)="form.onSubmit()"
+      >
+        <ion-icon slot="start" name="save"></ion-icon>
+        Salvar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
